@@ -25,7 +25,7 @@ test_vuitton:
     - docker:dind
   stage: test
   script:
-    - docker run --pull=always --name vuitton_0 -e CONTAINER_NAME=vuitton_0 registry.gitlab.com/scraper8502721/scraper:main
+    - echo $(docker run --pull=always --name ${CONTAINER_NAME} -e CONTAINER_NAME=${CONTAINER_NAME} registry.gitlab.com/scraper8502721/scraper:main)
   when: manual
 
 deploy:
