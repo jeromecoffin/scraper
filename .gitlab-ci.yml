@@ -25,8 +25,7 @@ test_vuitton:
     - docker:dind
   stage: test
   script:
-    - docker run --pull=always \
-      --name vuitton_0 \
+    - docker run --name vuitton_0 \
       -e CONTAINER_NAME=${CONTAINER_NAME} \
       -e BASE_URL=${BASE_URL} \
       -e COOKIES_XPATH="${COOKIES_XPATH}" \
