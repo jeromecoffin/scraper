@@ -1,7 +1,7 @@
 variables:
   IMAGE_NAME: "scraper"
   DOCKER_REGISTRY: "registry.gitlab.com"
-  TOKEN: "glpat-WjcM8F6NvNfDxk9R7KLh"
+  TOKEN: "glpat-RifwSNg1VZ5mBC2nyEzy"
   USERNAME: "jerome.devops"
   DEPLOY_SERVER: "your.server.ip.address"
   DEPLOY_USER: "your-deploy-user"
