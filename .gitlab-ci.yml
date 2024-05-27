@@ -25,7 +25,7 @@ test_vuitton:
     - docker:dind
   stage: test
   script:
-    - echo $(docker run --pull=always --name ${CONTAINER_NAME} -e CONTAINER_NAME=${CONTAINER_NAME} registry.gitlab.com/scraper8502721/scraper:main)
+    - docker run --pull=always --name ${CONTAINER_NAME} -e CONTAINER_NAME=${CONTAINER_NAME} -e BASE_URL=${BASE_URL} -e COOKIES_XPATH="${COOKIES_XPATH}" -e PRICE_XPATH="${PRICE_XPATH}" -e NUM_LINES_TO_READ=${NUM_LINES_TO_READ} -e LIST_REFERENCES=${LIST_REFERENCES} registry.gitlab.com/scraper8502721/scraper:main
   when: manual
 
 deploy:
