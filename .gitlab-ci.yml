@@ -27,12 +27,12 @@ test_vuitton:
   script:
     - docker run --pull=always \
       --name vuitton_0 \
-      -e CONTAINER_NAME=${CONTAINER_NAME} \
-      -e BASE_URL=${BASE_URL} \
-      -e COOKIES_XPATH="${COOKIES_XPATH}" \
-      -e PRICE_XPATH="${PRICE_XPATH}" \
-      -e NUM_LINES_TO_READ=${NUM_LINES_TO_READ} \
-      -e LIST_REFERENCES=${LIST_REFERENCES} \
+      -e CONTAINER_NAME=vuitton_0 \
+      -e BASE_URL="https://fr.louisvuitton.com/fra-fr/produits/" \
+      -e COOKIES_XPATH='//button[@class="ucm-button ucm-button--default ucm-choice__yes"]' \
+      -e PRICE_XPATH='//div[@class="lv-price lv-product__price body-s"]/span' \
+      -e NUM_LINES_TO_READ=10 \
+      -e LIST_REFERENCES='/app/code/louis_vuitton.txt' \
       registry.gitlab.com/scraper8502721/$IMAGE_NAME:$CI_COMMIT_REF_NAME
     - cat "/app/data/" + CONTAINER_NAME + ".db"
   when: manual
