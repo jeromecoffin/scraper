@@ -24,7 +24,16 @@ test_vuitton:
     - docker:dind
   stage: test
   script:
-    - docker run --pull=always -v /Users/jeromecoffin/git_repo/scraper/data/:/app/data --name vuitton_0 -e CONTAINER_NAME=$CONTAINER_NAME BASE_URL=$BASE_URL COOKIES_XPATH=$COOKIES_XPATH PRICE_XPATH=$PRICE_XPATH NUM_LINES_TO_READ=$NUM_LINES_TO_READ LIST_REFERENCES=$LIST_REFERENCES registry.gitlab.com/scraper8502721/$IMAGE_NAME:$CI_COMMIT_REF_NAME
+    - docker run --pull=always \
+      --name vuitton_0 \
+      -e CONTAINER_NAME=${CONTAINER_NAME} \
+      -e BASE_URL=${BASE_URL} \
+      -e COOKIES_XPATH=${COOKIES_XPATH} \
+      -e PRICE_XPATH=${PRICE_XPATH} \
+      -e NUM_LINES_TO_READ=${NUM_LINES_TO_READ} \
+      -e LIST_REFERENCES=${LIST_REFERENCES} \
+      registry.gitlab.com/scraper8502721/${IMAGE_NAME}:${CI_COMMIT_REF_NAME}
+    - cat "/app/data/" + CONTAINER_NAME + ".db"
   when: manual
 
 deploy:
