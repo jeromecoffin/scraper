@@ -1,0 +1,44 @@
+stages:
+  - build
+  - test
+  - deploy
+
+include: variables.yml
+
+before_script:
+  - docker info
+
+build:
+  image: docker:latest
+  services:
+    - docker:dind
+  stage: build
+  script:
+    - echo "$TOKEN" | docker login -u "$USERNAME" --password-stdin $DOCKER_REGISTRY
+    - docker build -t $DOCKER_REGISTRY/scraper8502721/$IMAGE_NAME:$CI_COMMIT_REF_NAME .
+    - docker push $DOCKER_REGISTRY/scraper8502721/$IMAGE_NAME:$CI_COMMIT_REF_NAME
+
+test_vuitton:
+  image: docker:latest
+  services:
+    - docker:dind
+  stage: test
+  script:
+    - docker run --pull=always -v /Users/jeromecoffin/git_repo/scraper/data/:/app/data --name vuitton_0 -e CONTAINER_NAME=$CONTAINER_NAME BASE_URL=$BASE_URL COOKIES_XPATH=$COOKIES_XPATH PRICE_XPATH=$PRICE_XPATH NUM_LINES_TO_READ=$NUM_LINES_TO_READ LIST_REFERENCES=$LIST_REFERENCES registry.gitlab.com/scraper8502721/$IMAGE_NAME:$CI_COMMIT_REF_NAME
+  when: manual
+
+deploy:
+  stage: deploy
+  script:
+    - apk add --no-cache openssh
+    - mkdir -p ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - ssh-keyscan $DEPLOY_SERVER >> ~/.ssh/known_hosts
+    - ssh $DEPLOY_USER@$DEPLOY_SERVER "docker info"
+    - ssh $DEPLOY_USER@$DEPLOY_SERVER "docker pull $DOCKER_REGISTRY/scrapper1641804/$IMAGE_NAME:$CI_COMMIT_REF_NAME"
+    - ssh $DEPLOY_USER@$DEPLOY_SERVER "docker stop scraper_container || true"
+    - ssh $DEPLOY_USER@$DEPLOY_SERVER "docker rm scraper_container || true"
+    - ssh $DEPLOY_USER@$DEPLOY_SERVER "docker run -d --name scraper_container -v $DEPLOY_PATH/data:/app/data $DOCKER_REGISTRY/scrapper1641804/$IMAGE_NAME:$CI_COMMIT_REF_NAME"
+  only:
+    - master

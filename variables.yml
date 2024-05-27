@@ -1,0 +1,15 @@
+variables:
+  IMAGE_NAME: "scraper"
+  DOCKER_REGISTRY: "registry.gitlab.com"
+  TOKEN: "glpat-WjcM8F6NvNfDxk9R7KLh"
+  USERNAME: "jerome.devops"
+  DEPLOY_SERVER: "your.server.ip.address"
+  DEPLOY_USER: "your-deploy-user"
+  DEPLOY_PATH: "/path/to/deploy"
+  SSH_PRIVATE_KEY: $SSH_PRIVATE_KEY
+  CONTAINER_NAME: 'vuitton_0'
+  BASE_URL: "https://fr.louisvuitton.com/fra-fr/produits/"
+  COOKIES_XPATH: '//button[@class="ucm-button ucm-button--default ucm-choice__yes"]'
+  PRICE_XPATH: '//div[@class="lv-price lv-product__price body-s"]/span'
+  NUM_LINES_TO_READ: 10
+  LIST_REFERENCES: '/app/code/louis_vuitton.txt'
