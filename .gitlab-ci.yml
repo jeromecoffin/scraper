@@ -17,7 +17,6 @@ build:
     - echo "$TOKEN" | docker login -u "$USERNAME" --password-stdin $DOCKER_REGISTRY
     - docker build -t $DOCKER_REGISTRY/scraper8502721/$IMAGE_NAME:$CI_COMMIT_REF_NAME .
     - docker push $DOCKER_REGISTRY/scraper8502721/$IMAGE_NAME:$CI_COMMIT_REF_NAME
-  when: manual
 
 test_vuitton:
   image: docker:latest
