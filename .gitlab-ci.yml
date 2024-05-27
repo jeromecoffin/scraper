@@ -8,7 +8,7 @@ include: variables.yml
 before_script:
   - docker info
   - echo ${BASE_URL}
-  - echo "${COOKIES_XPATH}""
+  - echo "${COOKIES_XPATH}"
 
 build:
   image: docker:latest
