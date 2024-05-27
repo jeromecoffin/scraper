@@ -26,9 +26,9 @@ test_vuitton:
   stage: test
   script:
     - docker run --pull=always \
-    --name vuitton_0 \
-    -e CONTAINER_NAME=vuitton_0 \
-    registry.gitlab.com/scraper8502721/scraper:main
+      --name vuitton_0 \
+      -e CONTAINER_NAME=vuitton_0 \
+      registry.gitlab.com/scraper8502721/scraper:main
     - cat "/app/data/" + CONTAINER_NAME + ".db"
   when: manual
 
