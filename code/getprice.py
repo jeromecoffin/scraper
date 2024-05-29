@@ -11,7 +11,7 @@ import logging
 BASE_URL = os.getenv('BASE_URL')
 COOKIES_XPATH = os.getenv('COOKIES_XPATH')
 PRICE_XPATH = os.getenv('PRICE_XPATH')
-NUM_LINES_TO_READ = os.getenv('NUM_LINES_TO_READ')
+NUM_LINES_TO_READ = int(os.getenv('NUM_LINES_TO_READ'))
 LIST_REFERENCES = os.getenv('LIST_REFERENCES')
 CONTAINER_NAME = os.getenv('CONTAINER_NAME')
 
@@ -40,7 +40,7 @@ sleep(1)
 container_index = int(CONTAINER_NAME.split("_")[1])
 
 # Calculate starting index for reading lines
-start_index = (container_index * NUM_LINES_TO_READ)
+start_index = int(container_index * NUM_LINES_TO_READ)
 
 # Initialize a list to store selected lines
 ref = []

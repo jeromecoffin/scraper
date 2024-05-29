@@ -13,3 +13,6 @@ variables:
   PRICE_XPATH: '//div[@class="lv-price lv-product__price body-s"]/span'
   NUM_LINES_TO_READ: 10
   LIST_REFERENCES: '/app/code/louis_vuitton.txt'
+
+#docker run -v /Users/jeromecoffin/git_repo/scraper/data:/app/data --name vuitton_0 -e CONTAINER_NAME=vuitton_0 -e BASE_URL="https://fr.louisvuitton.com/fra-fr/produits/" -e COOKIES_XPATH='//button[@class="ucm-button ucm-button--default ucm-choice__yes"]' -e PRICE_XPATH='//div[@class="lv-price lv-product__price body-s"]/span' -e NUM_LINES_TO_READ=10 -e LIST_REFERENCES='/app/code/louis_vuitton.txt' scraper
+#docker run -it -v /Users/jeromecoffin/git_repo/scraper/data:/app/data --name vuitton_0 -e CONTAINER_NAME=vuitton_0 -e BASE_URL="https://fr.louisvuitton.com/fra-fr/produits/" -e COOKIES_XPATH='//button[@class="ucm-button ucm-button--default ucm-choice__yes"]' -e PRICE_XPATH='//div[@class="lv-price lv-product__price body-s"]/span' -e NUM_LINES_TO_READ=10 -e LIST_REFERENCES='/app/code/louis_vuitton.txt' scraper /bin/sh

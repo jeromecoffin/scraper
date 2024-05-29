@@ -7,7 +7,6 @@ ENV PATH /usr/local/bin:$PATH
 ENV LANG C.UTF-8
 
 WORKDIR /app
-RUN mkdir -p /app/data/logs/
 
 # Copy the current directory contents into the container at /app
 COPY code/getprice.py /app/code/
