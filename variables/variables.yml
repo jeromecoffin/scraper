@@ -1,0 +1,9 @@
+variables:
+  IMAGE_NAME: "scraper"
+  DOCKER_REGISTRY: "registry.gitlab.com"
+  TOKEN: "glpat-RifwSNg1VZ5mBC2nyEzy"
+  USERNAME: "jerome.devops"
+  DEPLOY_SERVER: "your.server.ip.address"
+  DEPLOY_USER: "your-deploy-user"
+  DEPLOY_PATH: "/path/to/deploy"
+  SSH_PRIVATE_KEY: $SSH_PRIVATE_KEY
