@@ -1,7 +1,7 @@
 variables:
-  CONTAINER_NAME: 'gucci_0'
-  BASE_URL: "https://www.gucci.com/fr/fr/pr/women/handbags/"
-  COOKIES_XPATH: '//button[@class="onetrust-close-btn-handler banner-close-button ot-close-link"]'
-  PRICE_XPATH: '//span[@class="price"]'
-  NUM_LINES_TO_READ: 10
-  LIST_REFERENCES: '/app/code/references/gucci.txt'
+  GUCCI_CONTAINER_NAME: 'gucci_0'
+  GUCCI_BASE_URL: "https://www.gucci.com/fr/fr/pr/women/handbags/"
+  GUCCI_COOKIES_XPATH: '//button[@class="onetrust-close-btn-handler banner-close-button ot-close-link"]'
+  GUCCI_PRICE_XPATH: '//span[@class="price"]'
+  GUCCI_NUM_LINES_TO_READ: 10
+  GUCCI_LIST_REFERENCES: '/app/code/references/gucci.txt'

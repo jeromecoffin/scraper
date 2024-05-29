@@ -1,10 +1,10 @@
 variables:
-  CONTAINER_NAME: 'vuitton_0'
-  BASE_URL: "https://fr.louisvuitton.com/fra-fr/produits/"
-  COOKIES_XPATH: '//button[@class="ucm-button ucm-button--default ucm-choice__yes"]'
-  PRICE_XPATH: '//div[@class="lv-price lv-product__price body-s"]/span'
-  NUM_LINES_TO_READ: 10
-  LIST_REFERENCES: '/app/code/references/louis_vuitton.txt'
+  VUITTON_CONTAINER_NAME: 'vuitton_0'
+  VUITTON_BASE_URL: "https://fr.louisvuitton.com/fra-fr/produits/"
+  VUITTON_COOKIES_XPATH: '//button[@class="ucm-button ucm-button--default ucm-choice__yes"]'
+  VUITTON_PRICE_XPATH: '//div[@class="lv-price lv-product__price body-s"]/span'
+  VUITTON_NUM_LINES_TO_READ: 10
+  VUITTON_LIST_REFERENCES: '/app/code/references/louis_vuitton.txt'
 
 #docker run --name vuitton_0 -e CONTAINER_NAME=vuitton_0 -e BASE_URL="https://fr.louisvuitton.com/fra-fr/produits/" -e COOKIES_XPATH='//button[@class="ucm-button ucm-button--default ucm-choice__yes"]' -e PRICE_XPATH='//div[@class="lv-price lv-product__price body-s"]/span' -e NUM_LINES_TO_READ=10 -e LIST_REFERENCES='/app/code/louis_vuitton.txt' scraper
 #docker run -it --name vuitton_0 -e CONTAINER_NAME=vuitton_0 -e BASE_URL="https://fr.louisvuitton.com/fra-fr/produits/" -e COOKIES_XPATH='//button[@class="ucm-button ucm-button--default ucm-choice__yes"]' -e PRICE_XPATH='//div[@class="lv-price lv-product__price body-s"]/span' -e NUM_LINES_TO_READ=10 -e LIST_REFERENCES='/app/code/louis_vuitton.txt' scraper
