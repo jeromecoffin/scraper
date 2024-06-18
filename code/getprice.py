@@ -21,8 +21,8 @@ db = TinyFlux(tinyflux_file)
 
 #log 
 log_file = "/app/data/logs/log_"+CONTAINER_NAME+".txt"
-logger = logging.LoggerAdapter(logging.getLogger(__name__), {'BRAND': CONTAINER_NAME})
-logging.basicConfig(format='%(asctime)s %(BRAND)s %(levelname)s:%(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', filename=log_file, level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+logging.basicConfig(format='%(asctime)s %(levelname)s:%(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', filename=log_file, level=logging.DEBUG)
 
 #set chrome options
 chrome_driver_binary = '/root/chromedriver'  #path to driver binary
