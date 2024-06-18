@@ -1,0 +1,8 @@
+variables:
+  CELINE_CONTAINER_NAME: 'celine_0'
+  CELINE_BASE_URL: "https://www.celine.com/fr-fr/"
+  CELINE_COOKIES_XPATH: '//button[@id="onetrust-accept-btn-handler"]'
+  CELINE_PRICE_XPATH: '//strong[@data-description="value"]'
+  CELINE_NUM_LINES_TO_READ: 10
+  CELINE_LIST_REFERENCES: '/app/code/references/celine.txt'
+  CELINE_TEST_LIST_REFERENCES: '/app/code/references/test_celine.txt'

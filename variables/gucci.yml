@@ -5,3 +5,4 @@ variables:
   GUCCI_PRICE_XPATH: '//span[@class="price"]'
   GUCCI_NUM_LINES_TO_READ: 10
   GUCCI_LIST_REFERENCES: '/app/code/references/gucci.txt'
+  GUCCI_TEST_LIST_REFERENCES: '/app/code/references/test_gucci.txt'

@@ -7,7 +7,13 @@ include:
   - variables/variables.yml
   - variables/gucci.yml
   - variables/vuitton.yml
-
+  - variables/dior.yml
+  - variables/prada.yml
+  - variables/polene.yml
+  - variables/ysl.yml
+  - variables/chanel.yml
+  - variables/celine.yml
+  
 before_script:
   - docker info
 
@@ -28,7 +34,7 @@ test_vuitton:
   stage: test
   script:
     - echo "$TOKEN" | docker login -u "$USERNAME" --password-stdin $DOCKER_REGISTRY
-    - docker run --pull=always --name ${VUITTON_CONTAINER_NAME} -e CONTAINER_NAME=${VUITTON_CONTAINER_NAME} -e BASE_URL=${VUITTON_BASE_URL} -e COOKIES_XPATH="${VUITTON_COOKIES_XPATH}" -e PRICE_XPATH="${VUITTON_PRICE_XPATH}" -e NUM_LINES_TO_READ=${VUITTON_NUM_LINES_TO_READ} -e LIST_REFERENCES=${VUITTON_LIST_REFERENCES} registry.gitlab.com/scraper8502721/$IMAGE_NAME:$CI_COMMIT_REF_NAME
+    - docker run --pull=always --name ${VUITTON_CONTAINER_NAME} -e CONTAINER_NAME=${VUITTON_CONTAINER_NAME} -e BASE_URL=${VUITTON_BASE_URL} -e COOKIES_XPATH="${VUITTON_COOKIES_XPATH}" -e PRICE_XPATH="${VUITTON_PRICE_XPATH}" -e NUM_LINES_TO_READ=${VUITTON_NUM_LINES_TO_READ} -e LIST_REFERENCES=${VUITTON_TEST_LIST_REFERENCES} registry.gitlab.com/scraper8502721/$IMAGE_NAME:$CI_COMMIT_REF_NAME
   when: manual
 
 test_gucci:
@@ -38,7 +44,67 @@ test_gucci:
   stage: test
   script:
     - echo "$TOKEN" | docker login -u "$USERNAME" --password-stdin $DOCKER_REGISTRY
-    - docker run --pull=always --name ${GUCCI_CONTAINER_NAME} -e CONTAINER_NAME=${GUCCI_CONTAINER_NAME} -e BASE_URL=${GUCCI_BASE_URL} -e COOKIES_XPATH="${GUCCI_COOKIES_XPATH}" -e PRICE_XPATH="${GUCCI_PRICE_XPATH}" -e NUM_LINES_TO_READ=${GUCCI_NUM_LINES_TO_READ} -e LIST_REFERENCES=${GUCCI_LIST_REFERENCES} registry.gitlab.com/scraper8502721/$IMAGE_NAME:$CI_COMMIT_REF_NAME
+    - docker run --pull=always --name ${GUCCI_CONTAINER_NAME} -e CONTAINER_NAME=${GUCCI_CONTAINER_NAME} -e BASE_URL=${GUCCI_BASE_URL} -e COOKIES_XPATH="${GUCCI_COOKIES_XPATH}" -e PRICE_XPATH="${GUCCI_PRICE_XPATH}" -e NUM_LINES_TO_READ=${GUCCI_NUM_LINES_TO_READ} -e LIST_REFERENCES=${GUCCI_TEST_LIST_REFERENCES} registry.gitlab.com/scraper8502721/$IMAGE_NAME:$CI_COMMIT_REF_NAME
+  when: manual
+
+test_celine:
+  image: docker:latest
+  services:
+    - docker:dind
+  stage: test
+  script:
+    - echo "$TOKEN" | docker login -u "$USERNAME" --password-stdin $DOCKER_REGISTRY
+    - docker run --pull=always --name ${CELINE_CONTAINER_NAME} -e CONTAINER_NAME=${CELINE_CONTAINER_NAME} -e BASE_URL=${CELINE_BASE_URL} -e COOKIES_XPATH="${CELINE_COOKIES_XPATH}" -e PRICE_XPATH="${CELINE_PRICE_XPATH}" -e NUM_LINES_TO_READ=${CELINE_NUM_LINES_TO_READ} -e LIST_REFERENCES=${CELINE_TEST_LIST_REFERENCES} registry.gitlab.com/scraper8502721/$IMAGE_NAME:$CI_COMMIT_REF_NAME
+  when: manual
+
+test_chanel:
+  image: docker:latest
+  services:
+    - docker:dind
+  stage: test
+  script:
+    - echo "$TOKEN" | docker login -u "$USERNAME" --password-stdin $DOCKER_REGISTRY
+    - docker run --pull=always --name ${CHANEL_CONTAINER_NAME} -e CONTAINER_NAME=${CHANEL_CONTAINER_NAME} -e BASE_URL=${CHANEL_BASE_URL} -e COOKIES_XPATH="${CHANEL_COOKIES_XPATH}" -e PRICE_XPATH="${CHANEL_PRICE_XPATH}" -e NUM_LINES_TO_READ=${CHANEL_NUM_LINES_TO_READ} -e LIST_REFERENCES=${CHANEL_TEST_LIST_REFERENCES} registry.gitlab.com/scraper8502721/$IMAGE_NAME:$CI_COMMIT_REF_NAME
+  when: manual
+
+test_dior:
+  image: docker:latest
+  services:
+    - docker:dind
+  stage: test
+  script:
+    - echo "$TOKEN" | docker login -u "$USERNAME" --password-stdin $DOCKER_REGISTRY
+    - docker run --pull=always --name ${DIOR_CONTAINER_NAME} -e CONTAINER_NAME=${DIOR_CONTAINER_NAME} -e BASE_URL=${DIOR_BASE_URL} -e COOKIES_XPATH="${DIOR_COOKIES_XPATH}" -e PRICE_XPATH="${DIOR_PRICE_XPATH}" -e NUM_LINES_TO_READ=${DIOR_NUM_LINES_TO_READ} -e LIST_REFERENCES=${DIOR_TEST_LIST_REFERENCES} registry.gitlab.com/scraper8502721/$IMAGE_NAME:$CI_COMMIT_REF_NAME
+  when: manual
+
+test_polene:
+  image: docker:latest
+  services:
+    - docker:dind
+  stage: test
+  script:
+    - echo "$TOKEN" | docker login -u "$USERNAME" --password-stdin $DOCKER_REGISTRY
+    - docker run --pull=always --name ${POLENE_CONTAINER_NAME} -e CONTAINER_NAME=${POLENE_CONTAINER_NAME} -e BASE_URL=${POLENE_BASE_URL} -e COOKIES_XPATH="${POLENE_COOKIES_XPATH}" -e PRICE_XPATH="${POLENE_PRICE_XPATH}" -e NUM_LINES_TO_READ=${POLENE_NUM_LINES_TO_READ} -e LIST_REFERENCES=${POLENE_TEST_LIST_REFERENCES} registry.gitlab.com/scraper8502721/$IMAGE_NAME:$CI_COMMIT_REF_NAME
+  when: manual
+
+test_prada:
+  image: docker:latest
+  services:
+    - docker:dind
+  stage: test
+  script:
+    - echo "$TOKEN" | docker login -u "$USERNAME" --password-stdin $DOCKER_REGISTRY
+    - docker run --pull=always --name ${PRADA_CONTAINER_NAME} -e CONTAINER_NAME=${PRADA_CONTAINER_NAME} -e BASE_URL=${PRADA_BASE_URL} -e COOKIES_XPATH="${PRADA_COOKIES_XPATH}" -e PRICE_XPATH="${PRADA_PRICE_XPATH}" -e NUM_LINES_TO_READ=${PRADA_NUM_LINES_TO_READ} -e LIST_REFERENCES=${PRADA_TEST_LIST_REFERENCES} registry.gitlab.com/scraper8502721/$IMAGE_NAME:$CI_COMMIT_REF_NAME
+  when: manual
+
+test_ysl:
+  image: docker:latest
+  services:
+    - docker:dind
+  stage: test
+  script:
+    - echo "$TOKEN" | docker login -u "$USERNAME" --password-stdin $DOCKER_REGISTRY
+    - docker run --pull=always --name ${YSL_CONTAINER_NAME} -e CONTAINER_NAME=${YSL_CONTAINER_NAME} -e BASE_URL=${YSL_BASE_URL} -e COOKIES_XPATH="${YSL_COOKIES_XPATH}" -e PRICE_XPATH="${YSL_PRICE_XPATH}" -e NUM_LINES_TO_READ=${YSL_NUM_LINES_TO_READ} -e LIST_REFERENCES=${YSL_TEST_LIST_REFERENCES} registry.gitlab.com/scraper8502721/$IMAGE_NAME:$CI_COMMIT_REF_NAME
   when: manual
 
 deploy:
