@@ -115,4 +115,7 @@ for row in ref:
     except NoSuchElementException:
         logger.error('ERROR (NoSuchElementException) : %s', row)
 
+    with open(log_file, 'r') as log_file_to_docker:
+            print(log_file_to_docker.read())
+
     driver.quit() #when in container, solve : failed to check if window was closed: disconnected: not connected to DevTools
