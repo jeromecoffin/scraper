@@ -74,13 +74,13 @@ for row in ref:
     # Launch a Chrome browser instance
     driver = webdriver.Chrome(chrome_driver_binary, chrome_options=options)
     driver.get(url)
-    sleep(3)
+    sleep(10)
 
     # accept cookies if banner is present
     cookies_banner = driver.find_elements(By.XPATH, COOKIES_XPATH)
     if cookies_banner:
         cookies_banner[0].click()
-        sleep(1)
+        sleep(5)
 
     try:
         # get price filed in web page
