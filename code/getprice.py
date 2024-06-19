@@ -34,7 +34,7 @@ options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) App
 options.add_argument("--disable-dev-shm-usage") # avoid chrome to crash because of low memory
 options.add_argument("--remote-debugging-port=9222") #solve ERROR : session not created: DevToolsActivePort file doesn't exist
 options.add_argument("--no-sandbox") #solve : Webdriver exception: "chrome not reachable"
-sleep(1)
+sleep(5)
 
 # Extract container number from container name
 container_index = int(CONTAINER_NAME.split("_")[1])
@@ -74,13 +74,13 @@ for row in ref:
     # Launch a Chrome browser instance
     driver = webdriver.Chrome(chrome_driver_binary, chrome_options=options)
     driver.get(url)
-    sleep(3)
+    sleep(10)
 
     # accept cookies if banner is present
     cookies_banner = driver.find_elements(By.XPATH, COOKIES_XPATH)
     if cookies_banner:
         cookies_banner[0].click()
-        sleep(1)
+        sleep(5)
 
     try:
         # get price filed in web page
