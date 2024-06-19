@@ -30,7 +30,7 @@ options = webdriver.ChromeOptions()
 options.binary_location = "/opt/google/chrome/chrome" #path to chrome binary
 options.add_argument("--headless")  # Run in headless mode
 options.add_argument("--disable-gpu")
-options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.9999.99 Safari/537.36")
+options.add_argument("--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36")
 options.add_argument("--disable-dev-shm-usage") # avoid chrome to crash because of low memory
 options.add_argument("--remote-debugging-port=9222") #solve ERROR : session not created: DevToolsActivePort file doesn't exist
 options.add_argument("--no-sandbox") #solve : Webdriver exception: "chrome not reachable"
