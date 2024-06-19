@@ -28,7 +28,7 @@ logging.basicConfig(format='%(asctime)s %(levelname)s:%(message)s', datefmt='%m/
 chrome_driver_binary = '/root/chromedriver'  #path to driver binary
 options = webdriver.ChromeOptions()
 options.binary_location = "/opt/google/chrome/chrome" #path to chrome binary
-#options.add_argument("--headless")  # Run in headless mode
+options.add_argument("--headless")  # Run in headless mode
 options.add_argument("--disable-gpu")
 options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.9999.99 Safari/537.36")
 options.add_argument("--disable-dev-shm-usage") # avoid chrome to crash because of low memory
