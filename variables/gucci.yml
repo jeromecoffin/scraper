@@ -7,4 +7,4 @@ variables:
   GUCCI_LIST_REFERENCES: '/app/code/references/gucci.txt'
   GUCCI_TEST_LIST_REFERENCES: '/app/code/references/test_gucci.txt'
 
-#docker run -v /Users/jeromecoffin/git_repo/scraper/data:/app/data --name gucci_0 -e CONTAINER_NAME=gucci_0 -e BASE_URL="https://www.gucci.com/fr/fr/pr/women/handbags/" -e COOKIES_XPATH="//button[@class='onetrust-close-btn-handler banner-close-button ot-close-link']" -e PRICE_XPATH="//span[@class='price']" -e NUM_LINES_TO_READ=10 -e LIST_REFERENCES='/app/code/references/test_gucci.txt' registry.gitlab.com/scraper8502721/scraper:brands
+#docker run -v /Users/jeromecoffin/git_repo/scraper/data:/app/data --name gucci_0 -e CONTAINER_NAME=gucci_0 -e BASE_URL="https://www.gucci.com/fr/fr/pr/women/handbags/" -e COOKIES_XPATH='//button[@class="onetrust-close-btn-handler banner-close-button ot-close-link"]' -e PRICE_XPATH='//span[@class="price"]' -e NUM_LINES_TO_READ=10 -e LIST_REFERENCES='/app/code/references/test_gucci.txt' registry.gitlab.com/scraper8502721/scraper:brands
