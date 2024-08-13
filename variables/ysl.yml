@@ -1,0 +1,10 @@
+variables:
+  YSL_CONTAINER_NAME: 'ysl_0'
+  YSL_BASE_URL: "https://www.ysl.com/fr-fr/"
+  YSL_COOKIES_XPATH: '//button[@id="onetrust-accept-btn-handler"]'
+  YSL_PRICE_XPATH: '//p[@class="c-price__value--current"]'
+  YSL_NUM_LINES_TO_READ: 10
+  YSL_LIST_REFERENCES: '/app/code/references/ysl.txt'
+  YSL_TEST_LIST_REFERENCES: '/app/code/references/test_ysl.txt'
+
+#docker run -v /Users/jeromecoffin/git_repo/scraper/data:/app/data --name ysl_0 -e CONTAINER_NAME=ysl_0 -e BASE_URL="https://www.ysl.com/fr-fr/" -e COOKIES_XPATH='//button[@id="onetrust-accept-btn-handler"]' -e PRICE_XPATH='//p[@class="c-price__value--current"]' -e NUM_LINES_TO_READ=10 -e LIST_REFERENCES='/app/code/references/test_ysl.txt' registry.gitlab.com/scraper8502721/scraper:brands

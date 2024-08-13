@@ -1,0 +1,8 @@
+variables:
+  CHANEL_CONTAINER_NAME: 'chanel_0'
+  CHANEL_BASE_URL: "https://www.chanel.com/fr/mode/p/"
+  CHANEL_COOKIES_XPATH: '//button[@class="onetrust-reject-all-handler"]'
+  CHANEL_PRICE_XPATH: '//p[@class="product-details__price"]'
+  CHANEL_NUM_LINES_TO_READ: 10
+  CHANEL_LIST_REFERENCES: '/app/code/references/chanel.txt'
+  CHANEL_TEST_LIST_REFERENCES: '/app/code/references/test_chanel.txt'

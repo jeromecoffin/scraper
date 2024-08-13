@@ -1,0 +1,8 @@
+variables:
+  POLENE_CONTAINER_NAME: 'polene_0'
+  POLENE_BASE_URL: "https://www.polene-paris.com/products/"
+  POLENE_COOKIES_XPATH: '//button[@class="zFp61nWMdHsttBG3M9jL pKrqgcVNmqUx8tgLuy22 FGuZn6Hqld825JDQ3Obf cc-btn cc-allow isense-cc-btn isense-cc-allow isense-cc-submit-consent"]'
+  POLENE_PRICE_XPATH: '//span[@class="state-label price ts-label-m"]'
+  POLENE_NUM_LINES_TO_READ: 10
+  POLENE_LIST_REFERENCES: '/app/code/references/polene.txt'
+  POLENE_TEST_LIST_REFERENCES: '/app/code/references/test_polene.txt'

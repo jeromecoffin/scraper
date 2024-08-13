@@ -21,8 +21,8 @@ db = TinyFlux(tinyflux_file)
 
 #log 
 log_file = "/app/data/logs/log_"+CONTAINER_NAME+".txt"
-logger = logging.LoggerAdapter(logging.getLogger(__name__), {'BRAND': CONTAINER_NAME})
-logging.basicConfig(format='%(asctime)s %(BRAND)s %(levelname)s:%(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', filename=log_file, level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+logging.basicConfig(format='%(asctime)s %(levelname)s:%(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', filename=log_file, level=logging.DEBUG)
 
 #set chrome options
 chrome_driver_binary = '/root/chromedriver'  #path to driver binary
@@ -30,7 +30,7 @@ options = webdriver.ChromeOptions()
 options.binary_location = "/opt/google/chrome/chrome" #path to chrome binary
 options.add_argument("--headless")  # Run in headless mode
 options.add_argument("--disable-gpu")
-options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.9999.99 Safari/537.36")
+options.add_argument("--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36")
 options.add_argument("--disable-dev-shm-usage") # avoid chrome to crash because of low memory
 options.add_argument("--remote-debugging-port=9222") #solve ERROR : session not created: DevToolsActivePort file doesn't exist
 options.add_argument("--no-sandbox") #solve : Webdriver exception: "chrome not reachable"
@@ -114,5 +114,8 @@ for row in ref:
         
     except NoSuchElementException:
         logger.error('ERROR (NoSuchElementException) : %s', row)
+
+    with open(log_file, 'r') as log_file_to_docker:
+            print(log_file_to_docker.read())
 
     driver.quit() #when in container, solve : failed to check if window was closed: disconnected: not connected to DevTools

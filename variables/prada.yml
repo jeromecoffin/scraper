@@ -1,0 +1,8 @@
+variables:
+  PRADA_CONTAINER_NAME: 'prada_0'
+  PRADA_BASE_URL: "https://www.prada.com/fr/fr/p/"
+  PRADA_COOKIES_XPATH: '//div[@class="banner_cta cta_accept"]'
+  PRADA_PRICE_XPATH: '//p[@data-element="product-current-price"]'
+  PRADA_NUM_LINES_TO_READ: 10
+  PRADA_LIST_REFERENCES: '/app/code/references/prada.txt'
+  PRADA_TEST_LIST_REFERENCES: '/app/code/references/test_prada.txt'

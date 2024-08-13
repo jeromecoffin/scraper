@@ -12,7 +12,7 @@ RUN mkdir -p /app/data/logs/
 # Copy the current directory contents into the container at /app
 COPY code/getprice.py /app/code/
 COPY requirements.txt /root/
-COPY louis_vuitton.txt /app/code/louis_vuitton.txt
+COPY references /app/code/references/
 
 # Install the latest versions of Google Chrome and Chromedriver
 # Patches Chrome launch script to disable /dev/shm and sandbox for use in docker

@@ -1,0 +1,8 @@
+variables:
+  DIOR_CONTAINER_NAME: 'dior_0'
+  DIOR_BASE_URL: "https://www.dior.com/fr_fr/fashion/products/"
+  DIOR_COOKIES_XPATH: '//button[@id="onetrust-accept-btn-handler"]'
+  DIOR_PRICE_XPATH: '//span[@class="AddToBagButton_content__0q5SF"]/div/span[@class="price-line"]'
+  DIOR_NUM_LINES_TO_READ: 10
+  DIOR_LIST_REFERENCES: '/app/code/references/dior.txt'
+  DIOR_TEST_LIST_REFERENCES: '/app/code/references/test_dior.txt'
