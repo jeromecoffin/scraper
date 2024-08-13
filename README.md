@@ -1,93 +1,99 @@
-# Vuitton
+# Luxury Price Scraper
 
+This project is a Python-based web scraper designed to extract price information from a specific set of URLs, log the results, and store them in a TinyFlux database. The scraper is configured to run in a Docker container and uses Selenium for web interactions.
 
-
-## Getting started
-
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://gitlab.com/scrapper1641804/Vuitton.git
-git branch -M main
-git push -uf origin main
-```
-
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://gitlab.com/scrapper1641804/Vuitton/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+## Table of Contents
+- [Installation](#installation)
+- [Environment Variables](#environment-variables)
+- [Usage](#usage)
+- [Logging](#logging)
+- [Database](#database)
+- [Notes](#notes)
+- [License](#license)
 
 ## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+
+### Prerequisites
+1. **Docker:** Ensure Docker is installed on your system.
+2. **Python Dependencies:** The script requires certain Python packages, which are usually included in the Docker image.
+
+### Build and Run Docker Container
+
+1. Clone this repository:
+
+    ```bash
+    git clone https://github.com/jeromecoffin/scraper.git
+    cd scraper
+    ```
+
+2. Build the Docker image:
+
+    ```bash
+    docker build -t scraper .
+    ```
+
+3. Run the Docker container:
+
+    ```bash
+    docker run -v /path/to/data:/app/data --env-file vraiables/ scraper
+    ```
+
+   Replace `/path/to/data` with the path to the directory where you want to store logs and the TinyFlux database. Ensure `.env` file is properly configured.
+
+## Environment Variables
+
+The scraper relies on several environment variables for its configuration. It was initialy deployed on gitlab. Please check .gitlab-ci.yml. These variables can be set in the varaible file:
+
+```bash
+BASE_URL="https://www.example.com/product/"
+COOKIES_XPATH="//button[@id='accept-cookies']"
+PRICE_XPATH="//span[@class='price']"
+NUM_LINES_TO_READ=100
+LIST_REFERENCES="/app/data/list_references.txt"
+CONTAINER_NAME="container_1"
+```
+
+- `BASE_URL`: The base URL for the target website.
+- `COOKIES_XPATH`: XPath for the "Accept Cookies" button.
+- `PRICE_XPATH`: XPath for the price element on the webpage.
+- `NUM_LINES_TO_READ`: Number of lines to read from the `LIST_REFERENCES` file.
+- `LIST_REFERENCES`: Path to the file containing a list of references to append to the `BASE_URL`.
+- `CONTAINER_NAME`: Unique name for the container, used in generating log and database file names.
 
 ## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+Once the container is running, the script will:
+1. Open the `LIST_REFERENCES` file and read a subset of lines based on the container's index.
+2. For each reference, append it to the `BASE_URL` and navigate to the page.
+3. Accept cookies if the banner is present.
+4. Scrape the price from the page and store it in a TinyFlux database.
+5. Log each operation and any errors encountered.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+## Logging
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+Logs are stored in a file located at `/app/data/logs/log_<CONTAINER_NAME>.txt`. The log includes:
+- URLs accessed.
+- Prices extracted.
+- Errors encountered (e.g., elements not found, invalid price formats).
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+## Database
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+The scraped data is stored in a TinyFlux database located at `/app/data/<CONTAINER_NAME>.db`. Each price entry is recorded with the following structure:
+- `time`: Timestamp of the scrape.
+- `measurement`: Always "price".
+- `tags`: Includes `bag` (reference) and `zone` (currency zone, here "euro").
+- `fields`: Contains the `count`, which is the numeric price.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+## Notes
+
+- Ensure that the `chrome_driver_binary` and `binary_location` paths in the script are correct for your environment.
+- The script uses a headless Chrome browser for scraping to minimize resource usage.
+- Sleep intervals are added to ensure elements have enough time to load before interaction.
 
 ## License
-For open source projects, say how it is licensed.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+---
+
+Feel free to customize any part of the above ReadMe according to the specific needs or additional features of your project. Let me know if you have any other questions!
