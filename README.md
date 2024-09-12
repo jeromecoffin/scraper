@@ -1,3 +1,4 @@
+# Now on Gitlab
 # Luxury Price Scraper
 
 This project is a Python-based web scraper designed to extract price information from a specific set of URLs, log the results, and store them in a TinyFlux database. The scraper is configured to run in a Docker container and uses Selenium for web interactions.
