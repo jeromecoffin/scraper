@@ -7,6 +7,12 @@
 
 This project is a Python-based web scraper designed to extract price information from a specific set of URLs, log the results, and store them in a TinyFlux database. The scraper is configured to run in a Docker container and uses Selenium for web interactions.
 
+<img width="1440" alt="anse swift" src="https://github.com/user-attachments/assets/8af48e7b-b1ae-4f53-9f7a-2613887a2c96">
+
+
+![anse bag details](https://github.com/user-attachments/assets/ccf22182-6c68-4d76-b511-634447493c6e)
+
+
 ## Table of Contents
 - [Installation](#installation)
 - [Environment Variables](#environment-variables)
